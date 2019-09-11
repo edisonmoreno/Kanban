@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Kanban.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPage : ContentPage
+    public partial class MasterPage : MasterDetailPage
     {
         public MasterPage()
         {
