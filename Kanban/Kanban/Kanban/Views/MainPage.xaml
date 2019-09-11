@@ -3,30 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vms="clr-namespace:Kanban.ViewModels"
              mc:Ignorable="d"
+             BindingContext="{Binding Source={StaticResource MainPageVM}}"
              x:Class="Kanban.Views.MainPage">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <vms:MainPageViewModel x:Key="MainPageVM"></vms:MainPageViewModel>
+            <DataTemplate x:Key="ActivityItemTemplate">
+                <ViewCell>
+                    <StackLayout Margin="5">
+                        <Label 
+                            Text="{Binding Title}"
+                            FontSize="18" 
+                            TextColor="Black"
+                            FontAttributes="Bold">
+                        </Label>
+                        <Label 
+                            Text="{Binding DateTime}"
+                            TextColor="Gray"
+                            FontSize="14"
+                            FontAttributes="Bold">
+                        </Label>
+                        <Label 
+                            Text="{Binding Description}"
+                            TextColor="Gray"
+                            FontSize="12">
+                        </Label>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <ContentPage Title="PENDIENTES">
         <ListView 
             ItemsSource="{Binding ToDo}"
             HasUnevenRows="True"
+            ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-            
         </ListView>
     </ContentPage>
     <ContentPage Title="HACIENDO">
         <ListView 
             ItemsSource="{Binding Doing}"
             HasUnevenRows="True"
+            ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-
         </ListView>
     </ContentPage>
     <ContentPage Title="LISTAS">
         <ListView 
             ItemsSource="{Binding Done}"
             HasUnevenRows="True"
+            ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-
         </ListView>
     </ContentPage>
 </TabbedPage>
