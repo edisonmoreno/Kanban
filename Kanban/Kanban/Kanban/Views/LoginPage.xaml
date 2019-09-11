@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:vms="clr-namespace:Kanban.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Kanban.Views.LoginPage"
+             Padding="20"
+             BindingContext="{Binding Source={StaticResource LoginPageVM}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vms:LoginPageViewModel x:Key="LoginPageVM" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Dime tu nombre" />
+            <Entry Text="{Binding UserName, Mode=TwoWay}"></Entry>
+            <Button Command="{Binding StartCommand}" Text="Ingresar"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
