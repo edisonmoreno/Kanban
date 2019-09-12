@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban", "Kanban\Kanban\Kanban.csproj", "{BEC3699E-CFC7-4158-8DEC-20B6B3A66E78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanban.Android", "Kanban\Kanban.Android\Kanban.Android.csproj", "{1BAD201A-41D6-4056-A301-A93AB44278D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC3699E-CFC7-4158-8DEC-20B6B3A66E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC3699E-CFC7-4158-8DEC-20B6B3A66E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC3699E-CFC7-4158-8DEC-20B6B3A66E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC3699E-CFC7-4158-8DEC-20B6B3A66E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAD201A-41D6-4056-A301-A93AB44278D6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {858AABF3-2131-4617-BB2A-94724A440600}
+	EndGlobalSection
+EndGlobal
