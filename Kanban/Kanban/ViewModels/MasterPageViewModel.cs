@@ -1,5 +1,8 @@
-﻿using Kanban.ViewModels.Items;
+﻿using Kanban.Events;
+using Kanban.Helpers;
+using Kanban.ViewModels.Items;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
@@ -10,12 +13,19 @@ namespace Kanban.ViewModels
 {
     public class MasterPageViewModel
     {
-        public MasterPageViewModel(INavigationService navigationService,
+        private readonly INavigationService _navigationService;
+        private readonly IEventAggregator _eventAggregator;
+
+        public MasterPageViewModel(
+            INavigationService navigationService,
+            IEventAggregator eventAggregator,
             ApplicationContext context)
         {
             User = context.User;
-
             Items = new List<MenuItemViewModel>();
+
+            _navigationService = navigationService;
+            _eventAggregator = eventAggregator;
 
             Items.Add(new MenuItemViewModel()
             {
@@ -54,15 +64,7 @@ namespace Kanban.ViewModels
 
         private void ExecuteAction(MenuItemViewModel item)
         {
-            switch (item.ActionKey)
-            {
-                case "About":
-                    break;
-                case "Exit":
-                    break;
-                default:
-                    break;
-            }
+            _eventAggregator.GetEvent<NavigateEvent>().Publish(item.ActionKey);
         }
 
         public UserItemViewModel User { get; set; }

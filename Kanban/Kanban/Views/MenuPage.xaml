@@ -38,10 +38,6 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer 
-                                    Command="{Binding ExecuteActionCommand}"/>
-                            </StackLayout.GestureRecognizers>
                             <Image 
                                 HeightRequest="50"
                                 WidthRequest="50"
