@@ -35,6 +35,7 @@ namespace Kanban
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
 
+            containerRegistry.RegisterSingleton<ApplicationContext>();
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
         }
     }
