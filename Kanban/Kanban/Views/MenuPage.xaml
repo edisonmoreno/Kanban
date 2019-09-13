@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:controls="clr-namespace:Kanban.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Padding="20"
@@ -19,35 +20,50 @@
             </Grid.ColumnDefinitions>
 
             <Image></Image>
-            <Label Text="{Binding User.UserName}" Grid.Column="1"></Label>
+            <Label 
+                Text="{Binding User.UserName}" 
+                FontSize="20"
+                FontAttributes="Bold"
+                Grid.Column="1"></Label>
         </Grid>
 
-        <ListView 
+        <controls:ExtendedListView  
             ItemsSource="{Binding Items}"
             HasUnevenRows="True"
             SeparatorVisibility="None"
+            TappedCommand="{Binding ExecuteActionCommand}"
             Grid.Row="1">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="5">
-                            <Label 
-                                Text="{Binding Title}"
-                                FontSize="18" 
-                                TextColor="Black"
-                                FontAttributes="Bold">
-                            </Label>
-                            <Label 
-                                Text="{Binding Description}"
-                                TextColor="Gray"
-                                FontSize="12">
-                            </Label>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding ExecuteActionCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Image 
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                Source="{Binding Icon}" />
+                            <StackLayout Margin="5">
+                                <Label 
+                                    Text="{Binding Title}"
+                                    FontSize="18" 
+                                    TextColor="Black"
+                                    FontAttributes="Bold">
+                                </Label>
+                                <Label 
+                                    Text="{Binding Description}"
+                                    TextColor="Gray"
+                                    FontSize="12">
+                                </Label>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
             
-        </ListView>
+        </controls:ExtendedListView>
     </Grid>
 </ContentPage>
