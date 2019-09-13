@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
 
             <Image></Image>
-            <Label Text="{Binding Username}" Grid.Column="1"></Label>
+            <Label Text="{Binding User.UserName}" Grid.Column="1"></Label>
         </Grid>
 
         <ListView 

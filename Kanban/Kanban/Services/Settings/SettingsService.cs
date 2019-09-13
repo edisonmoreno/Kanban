@@ -14,11 +14,7 @@ namespace Kanban.Services.Settings
 
         public void Save(string key, string value)
         {
-            if (key == "User")
-            {
-                //var cache = (UserItemViewModel)App.Current.Resources["LoggedInUser"];
-                //cache.Username = value;
-            }
+            
         }
     }
 }

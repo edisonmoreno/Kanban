@@ -13,12 +13,18 @@ namespace Kanban.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
+
+        private readonly ApplicationContext _context;
+
         public LoginPageViewModel(
             INavigationService navigationService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            ApplicationContext context)
         {
             _navigationService = navigationService;
             _settingsService = settingsService;
+
+            _context = context;
 
             UserName = "Anónimo";
             //Se instancia la clase concreta segun el framework a usar
@@ -27,6 +33,11 @@ namespace Kanban.ViewModels
 
         private void Start()
         {
+            _context.User = new Items.UserItemViewModel()
+            {
+                UserName = this.UserName
+            };
+
             _settingsService.Save("User", this.UserName);
             _navigationService.NavigateAsync(NavigationConstants.Main);
         }

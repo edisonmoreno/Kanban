@@ -7,8 +7,10 @@ namespace Kanban.ViewModels
 {
     public class MasterPageViewModel
     {
-        public MasterPageViewModel()
+        public MasterPageViewModel(ApplicationContext context)
         {
+            User = context.User;
+
             Items = new List<MenuItemViewModel>();
             Items.Add(new MenuItemViewModel()
             {
@@ -26,6 +28,8 @@ namespace Kanban.ViewModels
                 Description = "Description larga de la acción a realizar 2"
             });
         }
+
+        public UserItemViewModel User { get; set; }
         public List<MenuItemViewModel> Items { get; set; }
     }
 }

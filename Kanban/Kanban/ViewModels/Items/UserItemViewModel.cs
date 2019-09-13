@@ -6,6 +6,6 @@ namespace Kanban.ViewModels.Items
 {
     public class UserItemViewModel
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
     }
 }
