@@ -4,21 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:vms="clr-namespace:Kanban.ViewModels"
              Padding="20"
              x:Class="Kanban.Views.MenuPage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <vms:MenuPageViewModel x:Key="MenuPageVM"></vms:MenuPageViewModel>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid BindingContext="{Binding Source={StaticResource LoggedInUser}}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -29,7 +23,6 @@
         </Grid>
 
         <ListView 
-            BindingContext="{Binding Source={StaticResource MenuPageVM}}"
             ItemsSource="{Binding Items}"
             HasUnevenRows="True"
             SeparatorVisibility="None"

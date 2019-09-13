@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 *.apk
 /Kanban/.vs/Kanban/v16/Server/sqlite3
+/.vs/Kanban

@@ -1,5 +1,6 @@
-﻿using Kanban.Services.Navigation;
+﻿using Kanban.Helpers;
 using Kanban.Services.Settings;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,11 +13,12 @@ namespace Kanban.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
-        public LoginPageViewModel()
+        public LoginPageViewModel(
+            INavigationService navigationService,
+            ISettingsService settingsService)
         {
-            //Esto no se hace, no tenemos aun inyector de dependencias
-            _navigationService = new NavigationService();
-            _settingsService = new SettingsService();
+            _navigationService = navigationService;
+            _settingsService = settingsService;
 
             UserName = "Anónimo";
             //Se instancia la clase concreta segun el framework a usar
@@ -26,7 +28,7 @@ namespace Kanban.ViewModels
         private void Start()
         {
             _settingsService.Save("User", this.UserName);
-            _navigationService.ChangeRoot("MasterPage");
+            _navigationService.NavigateAsync(NavigationConstants.Main);
         }
 
         //public string Username { get; set; }

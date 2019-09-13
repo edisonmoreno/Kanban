@@ -4,6 +4,8 @@ using Kanban.ViewModels;
 using Kanban.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Kanban.Helpers;
+using Kanban.Services.Settings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Kanban
@@ -23,13 +25,17 @@ namespace Kanban
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("LoginPage");
+            await NavigationService.NavigateAsync(NavigationConstants.Login);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MasterPage, MasterPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+
+            containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
         }
     }
 }

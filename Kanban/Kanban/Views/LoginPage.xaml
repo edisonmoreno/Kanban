@@ -6,13 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Kanban.Views.LoginPage"
-             Padding="20"
-             BindingContext="{Binding Source={StaticResource LoginPageVM}}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <vms:LoginPageViewModel x:Key="LoginPageVM" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             Title="Bienvenidos"
+             Padding="20">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Dime tu nombre" />

@@ -9,11 +9,4 @@
     <MasterDetailPage.Master>
         <views:MenuPage Title="Menu"></views:MenuPage>
     </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
-        <NavigationPage x:Name="Navigator">
-            <x:Arguments>
-                <views:MainPage Title="Principal"></views:MainPage>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
 </MasterDetailPage>

@@ -16,8 +16,8 @@ namespace Kanban.Services.Settings
         {
             if (key == "User")
             {
-                var cache = (UserItemViewModel)App.Current.Resources["LoggedInUser"];
-                cache.Username = value;
+                //var cache = (UserItemViewModel)App.Current.Resources["LoggedInUser"];
+                //cache.Username = value;
             }
         }
     }

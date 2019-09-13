@@ -3,13 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vms="clr-namespace:Kanban.ViewModels"
              mc:Ignorable="d"
-             BindingContext="{Binding Source={StaticResource MainPageVM}}"
              x:Class="Kanban.Views.MainPage">
     <TabbedPage.Resources>
         <ResourceDictionary>
-            <vms:MainPageViewModel x:Key="MainPageVM"></vms:MainPageViewModel>
             <DataTemplate x:Key="ActivityItemTemplate">
                 <ViewCell>
                     <StackLayout Margin="5">
