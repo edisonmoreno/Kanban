@@ -6,20 +6,28 @@ using Prism.Events;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 
 namespace Kanban.ViewModels
 {
-    public class MasterPageViewModel
+    public class MasterPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _eventAggregator;
 
+        private void ExecuteAction(MenuItemViewModel item)
+        {
+            IsMenuPresented = false;
+
+            _eventAggregator.GetEvent<NavigateEvent>().Publish(item.ActionKey);
+        }
+
         public MasterPageViewModel(
             INavigationService navigationService,
             IEventAggregator eventAggregator,
-            ApplicationContext context)
+            ApplicationContext context) : base(navigationService)
         {
             User = context.User;
             Items = new List<MenuItemViewModel>();
@@ -62,10 +70,7 @@ namespace Kanban.ViewModels
             ExecuteActionCommand = new DelegateCommand<MenuItemViewModel>(ExecuteAction);
         }
 
-        private void ExecuteAction(MenuItemViewModel item)
-        {
-            _eventAggregator.GetEvent<NavigateEvent>().Publish(item.ActionKey);
-        }
+        public bool IsMenuPresented { get; set; }
 
         public UserItemViewModel User { get; set; }
         public List<MenuItemViewModel> Items { get; set; }

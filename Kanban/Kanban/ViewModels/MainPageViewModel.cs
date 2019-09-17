@@ -51,6 +51,11 @@ namespace Kanban.ViewModels
             };
         }
 
+        public List<ActivityItemViewModel> ToDo { get; set; }
+        public List<ActivityItemViewModel> Doing { get; set; }
+        public List<ActivityItemViewModel> Done { get; set; }
+
+
         private void Navigate(string actionKey)
         {
             switch (actionKey)
@@ -65,9 +70,5 @@ namespace Kanban.ViewModels
                     break;
             }
         }
-
-        public List<ActivityItemViewModel> ToDo { get; set; }
-        public List<ActivityItemViewModel> Doing { get; set; }
-        public List<ActivityItemViewModel> Done { get; set; }
     }
 }
