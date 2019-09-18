@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Kanban.Helpers;
 using Kanban.Services.Settings;
+using Kanban.Services.Api;
+using Kanban.Services.Dialogs;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Kanban
@@ -35,9 +37,12 @@ namespace Kanban
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage, AboutPageViewModel>();
+            containerRegistry.RegisterForNavigation<EditActivityPage, EditActivityPageViewModel>();
 
             containerRegistry.RegisterSingleton<ApplicationContext>();
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
+            containerRegistry.RegisterSingleton<IApiService, ApiService>();
+            containerRegistry.RegisterSingleton<IDialogsService, DialogsService>();
         }
     }
 }

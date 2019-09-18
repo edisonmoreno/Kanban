@@ -30,6 +30,8 @@ namespace Kanban.Services.Api
             using (HttpClient client = new HttpClient())
             {
                 string url = "https://eafit.azurewebsites.net/tables/activities";
+                client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+
                 var result = await client.GetAsync(url);
 
                 if (result.IsSuccessStatusCode)

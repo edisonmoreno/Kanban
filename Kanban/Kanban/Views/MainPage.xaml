@@ -2,6 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:controls="clr-namespace:Kanban.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Kanban"
@@ -34,27 +35,37 @@
         </ResourceDictionary>
     </TabbedPage.Resources>
     <ContentPage Title="PENDIENTES">
-        <ListView 
+        <controls:ExtendedListView 
             ItemsSource="{Binding ToDo}"
+            TappedCommand="{Binding SelectActivityCommand}"
             HasUnevenRows="True"
             ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-        </ListView>
+        </controls:ExtendedListView>
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Icon="ic_action_add_white.png"
+                         Command="{Binding AddNewActivityCommand}"></ToolbarItem>
+        </ContentPage.ToolbarItems>
     </ContentPage>
     <ContentPage Title="HACIENDO">
-        <ListView 
+        <controls:ExtendedListView  
             ItemsSource="{Binding Doing}"
             HasUnevenRows="True"
+            TappedCommand="{Binding SelectActivityCommand}"
             ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-        </ListView>
+        </controls:ExtendedListView>
     </ContentPage>
     <ContentPage Title="LISTAS">
-        <ListView 
+        <controls:ExtendedListView 
             ItemsSource="{Binding Done}"
+            TappedCommand="{Binding SelectActivityCommand}"
             HasUnevenRows="True"
             ItemTemplate="{StaticResource ActivityItemTemplate}"
             SeparatorVisibility="None">
-        </ListView>
+        </controls:ExtendedListView >
     </ContentPage>
+    <TabbedPage.ToolbarItems>
+        
+    </TabbedPage.ToolbarItems>
 </TabbedPage>
