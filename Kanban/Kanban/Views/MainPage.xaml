@@ -11,25 +11,35 @@
         <ResourceDictionary>
             <DataTemplate x:Key="ActivityItemTemplate">
                 <ViewCell>
-                    <StackLayout Margin="5">
-                        <Label 
-                            Text="{Binding Title}"
-                            FontSize="18" 
-                            TextColor="Black"
-                            FontAttributes="Bold">
-                        </Label>
-                        <Label 
-                            Text="{Binding DateTime}"
-                            TextColor="Gray"
-                            FontSize="14"
-                            FontAttributes="Bold">
-                        </Label>
-                        <Label 
-                            Text="{Binding Description}"
-                            TextColor="Gray"
-                            FontSize="12">
-                        </Label>
-                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            Source="{Binding State, Converter={StaticResource StatusToImageConverter}}"
+                            Grid.Column="0">
+                        </Image>
+                            <StackLayout Grid.Column="1" Margin="5">
+                            <Label 
+                                Text="{Binding Title}"
+                                FontSize="18" 
+                                TextColor="Black"
+                                FontAttributes="Bold">
+                            </Label>
+                            <Label 
+                                Text="{Binding DateTime}"
+                                TextColor="Gray"
+                                FontSize="14"
+                                FontAttributes="Bold">
+                            </Label>
+                            <Label 
+                                Text="{Binding Description}"
+                                TextColor="Gray"
+                                FontSize="12">
+                            </Label>
+                        </StackLayout>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ResourceDictionary>

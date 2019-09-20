@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kanban.Views.ActivityPage"
+             Padding="20">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BindingContext="{Binding SelectedActivity}">
+                <Entry Text="{Binding Title}"></Entry>
+                <Editor Text="{Binding Description}"></Editor>
+                <DatePicker Date="{Binding Date}"></DatePicker>
+                <TimePicker Time="{Binding Time}"></TimePicker>
+            </StackLayout>
+            <Button 
+                Command="{Binding SaveCommand}"
+                Text="Guardar"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

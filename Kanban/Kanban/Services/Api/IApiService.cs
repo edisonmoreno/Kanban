@@ -10,7 +10,7 @@ namespace Kanban.Services.Api
     {
         Task<CustomResponse<ActivityModel>> CreateActivity(ActivityModel activity);
         Task<CustomResponse<ActivityModel>> UpdateActivity(ActivityModel activity);
-        Task DeleteActivity(string id);
+        Task<CustomResponse<ActivityModel>> DeleteActivity(string id);
         Task<CustomResponse<ActivityModel>> GetActivity(string id);
         Task<CustomResponse<List<ActivityModel>>> GetAllActivities();
     }

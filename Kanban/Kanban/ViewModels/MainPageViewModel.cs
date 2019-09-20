@@ -1,4 +1,5 @@
-﻿using Kanban.Events;
+﻿using Kanban.Enumerations;
+using Kanban.Events;
 using Kanban.Helpers;
 using Kanban.Services.Api;
 using Kanban.Services.Dialogs;
@@ -32,6 +33,7 @@ namespace Kanban.ViewModels
             _dialogsService = dialogsService;
 
             SelectActivityCommand = new DelegateCommand<ActivityItemViewModel>(async (selectedActivity) => await SelectActivity(selectedActivity));
+            AddNewActivityCommand = new DelegateCommand(() => Navigate("NewActivity"));
 
             eventAggregator.GetEvent<NavigateEvent>()
                 .Subscribe(Navigate);
@@ -41,11 +43,13 @@ namespace Kanban.ViewModels
         {
             var parameters = new NavigationParameters();
             parameters.Add("SelectedActivity", selectedActivity);
+            parameters.Add("ActionMode", ActionMode.Edit);
 
-            await _navigationService.NavigateAsync(NavigationConstants.EditActivity, parameters, true);
+            await _navigationService.NavigateAsync(NavigationConstants.Activity, parameters);
         }
 
         public ICommand SelectActivityCommand { get; set; }
+        public ICommand AddNewActivityCommand { get; set; }
 
         public ObservableCollection<ActivityItemViewModel> ToDo { get; set; }
         public ObservableCollection<ActivityItemViewModel> Doing { get; set; }
@@ -53,6 +57,8 @@ namespace Kanban.ViewModels
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
+            //if (parameters.GetNavigationMode() == NavigationMode.Back)
+
             await LoadData();
             base.OnNavigatedTo(parameters);
         }
@@ -103,6 +109,11 @@ namespace Kanban.ViewModels
         {
             switch (actionKey)
             {
+                case "NewActivity":
+                    var parameters = new NavigationParameters();
+                    parameters.Add("ActionMode", ActionMode.Create);
+                    _navigationService.NavigateAsync(NavigationConstants.Activity, parameters);
+                    break;
                 case "About":
                     _navigationService.NavigateAsync(NavigationConstants.About);
                     break;

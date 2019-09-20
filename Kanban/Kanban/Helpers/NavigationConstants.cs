@@ -9,6 +9,6 @@ namespace Kanban.Helpers
         public const string Login = "http://kanban/NavigationPage/LoginPage";
         public const string Main = "http://kanban/MasterPage/NavigationPage/MainPage";
         public const string About = "AboutPage";
-        public const string EditActivity = "NavigationPage/EditActivityPage";
+        public const string Activity = "ActivityPage";
     }
 }
