@@ -1,8 +1,11 @@
 ﻿using Kanban.Enumerations;
 using Kanban.Events;
 using Kanban.Helpers;
+using Kanban.Models;
 using Kanban.Services.Api;
 using Kanban.Services.Dialogs;
+using Kanban.Services.LocalDatabase;
+using Kanban.Services.Settings;
 using Kanban.ViewModels.Items;
 using Prism.Commands;
 using Prism.Events;
@@ -22,15 +25,23 @@ namespace Kanban.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private readonly IDialogsService _dialogsService;
+        private readonly ISettingsService _settingsService;
+        private readonly ApplicationContext _context;
+        private readonly ILocalDatabaseService _localDatabaseService;
 
         public MainPageViewModel(IEventAggregator eventAggregator,
             INavigationService navigationService,
+            ISettingsService settingsService,
+            ApplicationContext context,
+            ILocalDatabaseService localDatabaseService,
             IApiService apiService,
             IDialogsService dialogsService) : base(navigationService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
             _dialogsService = dialogsService;
+            _settingsService = settingsService;
+            _context = context;
 
             SelectActivityCommand = new DelegateCommand<ActivityItemViewModel>(async (selectedActivity) => await SelectActivity(selectedActivity));
             AddNewActivityCommand = new DelegateCommand(() => Navigate("NewActivity"));
@@ -58,8 +69,8 @@ namespace Kanban.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             //if (parameters.GetNavigationMode() == NavigationMode.Back)
-
             await LoadData();
+
             base.OnNavigatedTo(parameters);
         }
 
@@ -68,30 +79,34 @@ namespace Kanban.ViewModels
             try
             {
                 _dialogsService.ShowLoading();
-                var result = await _apiService.GetAllActivities();
+                List<ActivityModel> result;
+                if (_context.UseCloud)
+                {
+                    var response = await _apiService.GetAllActivities();
+                    result = response.Data;
+                }
+                else
+                    result = await _localDatabaseService.GetAllActivities();
 
                 ToDo = new ObservableCollection<ActivityItemViewModel>();
                 Doing = new ObservableCollection<ActivityItemViewModel>();
                 Done = new ObservableCollection<ActivityItemViewModel>();
 
-                if (result.Response.IsSuccessStatusCode)
+                foreach (var item in result)
                 {
-                    foreach (var item in result.Data)
+                    switch ((ActivityState)item.State)
                     {
-                        switch (item.State)
-                        {
-                            case Enumerations.ActivityState.ToDo:
-                                ToDo.Add(ViewModelHelper.Get(item));
-                                break;
-                            case Enumerations.ActivityState.Doing:
-                                Doing.Add(ViewModelHelper.Get(item));
-                                break;
-                            case Enumerations.ActivityState.Done:
-                                Done.Add(ViewModelHelper.Get(item));
-                                break;
-                            default:
-                                break;
-                        }
+                        case Enumerations.ActivityState.ToDo:
+                            ToDo.Add(ViewModelHelper.Get(item));
+                            break;
+                        case Enumerations.ActivityState.Doing:
+                            Doing.Add(ViewModelHelper.Get(item));
+                            break;
+                        case Enumerations.ActivityState.Done:
+                            Done.Add(ViewModelHelper.Get(item));
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -118,7 +133,9 @@ namespace Kanban.ViewModels
                     _navigationService.NavigateAsync(NavigationConstants.About);
                     break;
                 case "Exit":
-                    _navigationService.NavigateAsync(NavigationConstants.Login);
+                    _settingsService.Delete("UseCloud");
+                    _settingsService.Delete("UserName");
+                    _navigationService.NavigateAsync(NavigationConstants.Loader);
                     break;
                 default:
                     break;

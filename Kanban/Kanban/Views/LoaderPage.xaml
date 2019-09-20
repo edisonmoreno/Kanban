@@ -1,30 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:vms="clr-namespace:Kanban.ViewModels"
+             xmlns:prism="http://prismlibrary.com"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Kanban.Views.LoginPage"
-             Title="Bienvenidos"
-             Padding="20">
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Kanban.Views.LoaderPage">
     <ContentPage.Content>
         <StackLayout>
             <forms:AnimationView 
 	            x:Name="animationView" 
               WidthRequest="100"
-	            Animation="LottieLogin.json" 
+	            Animation="loading.json" 
 	            Loop="true" 
 	            AutoPlay="true"
 	            PlaybackStartedCommand="{Binding PlayingCommand}"
 	            PlaybackFinishedCommand="{Binding FinishedCommand}" 
 	            ClickedCommand="{Binding ClickedCommand}"
 	            VerticalOptions="FillAndExpand" />
-            <Label Text="Dime tu nombre" />
-            <Entry Text="{Binding UserName, Mode=TwoWay}"></Entry>
-            <Switch IsToggled="{Binding UseCloud, Mode=TwoWay}"></Switch>
-            <Button Command="{Binding StartCommand}" Text="Ingresar"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

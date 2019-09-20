@@ -8,5 +8,6 @@ namespace Kanban.ViewModels
     public class ApplicationContext
     {
         public UserItemViewModel User { get; set; }
+        public bool UseCloud { get; internal set; }
     }
 }

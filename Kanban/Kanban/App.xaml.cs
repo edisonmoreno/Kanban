@@ -8,6 +8,7 @@ using Kanban.Helpers;
 using Kanban.Services.Settings;
 using Kanban.Services.Api;
 using Kanban.Services.Dialogs;
+using Kanban.Services.LocalDatabase;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Kanban
@@ -27,7 +28,7 @@ namespace Kanban
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(NavigationConstants.Login);
+            await NavigationService.NavigateAsync(NavigationConstants.Loader);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -36,13 +37,16 @@ namespace Kanban
             containerRegistry.RegisterForNavigation<MasterPage, MasterPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoaderPage, LoaderPageViewModel>();
             containerRegistry.RegisterForNavigation<AboutPage, AboutPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityPage, ActivityPageViewModel>();
 
             containerRegistry.RegisterSingleton<ApplicationContext>();
             containerRegistry.RegisterSingleton<ISettingsService, SettingsService>();
             containerRegistry.RegisterSingleton<IApiService, ApiService>();
+            containerRegistry.RegisterSingleton<ILocalDatabaseService, LocalDatabaseService>();
             containerRegistry.RegisterSingleton<IDialogsService, DialogsService>();
+            containerRegistry.RegisterForNavigation<LoaderPage, LoaderPageViewModel>();
         }
     }
 }

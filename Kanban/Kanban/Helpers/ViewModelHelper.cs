@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Kanban.Enumerations;
 using Kanban.Models;
 using Kanban.ViewModels.Items;
 
@@ -17,7 +18,7 @@ namespace Kanban.Helpers
                 Time = activity.Date.TimeOfDay,
                 Description = activity.Description,
                 Title = activity.Title,
-                State = activity.State,
+                State = (ActivityState)activity.State,
             };
         }
 
@@ -29,7 +30,7 @@ namespace Kanban.Helpers
                 Date = activity.Date.Date.Add(activity.Time),
                 Description = activity.Description,
                 Title = activity.Title,
-                State = activity.State,
+                State = (int)activity.State,
             };
         }
     }

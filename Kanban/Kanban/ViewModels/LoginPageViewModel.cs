@@ -35,29 +35,19 @@ namespace Kanban.ViewModels
         {
             _context.User = new Items.UserItemViewModel()
             {
-                UserName = this.UserName
+                UserName = this.UserName,
             };
 
-            _settingsService.Save("User", this.UserName);
+            _context.UseCloud = this.UseCloud;
+
+            _settingsService.AddOrUpdateValue("UserName", this.UserName);
+            _settingsService.AddOrUpdateValue("UseCloud", this.UseCloud);
+
             _navigationService.NavigateAsync(NavigationConstants.Main);
         }
 
-        //public string Username { get; set; }
-
-        private string userName;
-
-        public string UserName
-        {
-            get
-            {
-                return userName;
-            }
-            set
-            {
-                userName = value;
-            }
-        }
-
+        public string UserName { get; set; }
+        public bool UseCloud { get; set; }
         public ICommand StartCommand { get; set; }
     }
 }
