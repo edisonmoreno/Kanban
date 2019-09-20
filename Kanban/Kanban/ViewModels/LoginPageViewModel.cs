@@ -1,5 +1,7 @@
 ﻿using Kanban.Helpers;
 using Kanban.Services.Settings;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,12 @@ namespace Kanban.ViewModels
 
             _settingsService.AddOrUpdateValue("UserName", this.UserName);
             _settingsService.AddOrUpdateValue("UseCloud", this.UseCloud);
+
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add("UserName", this.UserName);
+            properties.Add("UseCloud", this.UseCloud.ToString());
+
+            Analytics.TrackEvent("Login", properties);
 
             _navigationService.NavigateAsync(NavigationConstants.Main);
         }
