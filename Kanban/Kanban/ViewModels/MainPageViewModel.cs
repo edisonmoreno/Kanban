@@ -42,6 +42,7 @@ namespace Kanban.ViewModels
             _dialogsService = dialogsService;
             _settingsService = settingsService;
             _context = context;
+            _localDatabaseService = localDatabaseService;
 
             SelectActivityCommand = new DelegateCommand<ActivityItemViewModel>(async (selectedActivity) => await SelectActivity(selectedActivity));
             AddNewActivityCommand = new DelegateCommand(() => Navigate("NewActivity"));
@@ -68,6 +69,8 @@ namespace Kanban.ViewModels
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
+            //Poner en el loader
+            await _localDatabaseService.Initialize();
             //if (parameters.GetNavigationMode() == NavigationMode.Back)
             await LoadData();
 

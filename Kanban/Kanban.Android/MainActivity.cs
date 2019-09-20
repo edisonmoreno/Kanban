@@ -3,6 +3,9 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Lottie.Forms.Droid;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Prism;
 using Prism.Ioc;
 
@@ -15,6 +18,9 @@ namespace Kanban.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            AppCenter.Start("0b9d508b-bc79-46a4-bfdc-ee5391b9feb2",
+                   typeof(Analytics), typeof(Crashes));
 
             base.OnCreate(bundle);
             UserDialogs.Init(() => this);
